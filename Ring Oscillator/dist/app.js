@@ -115,14 +115,14 @@
   function renderExtraction(m){
     const n=active.stages, ns=t=>(t/1000).toFixed(3),fmt=(x,d,u)=>x===null?'—':x.toFixed(d)+' '+u;
     const readings=[
-      ['周期 T / 频率 f','T = Δt / K；f = 1 / T',m.k?fmt(m.period/1000,3,'ns')+' / '+fmt(1000/m.period,3,'GHz'):'—','从同一节点连续上升穿越 ½ VDD 的时刻计时。K 为完整周期数，Δt 为所选周期的总时长。'],
-      ['环路延迟 / 单级平均延迟','t环 = T / 2；t级 = T / (2N)',m.k?fmt(m.period/2,2,'ps')+' / '+fmt(m.period/(2*n),2,'ps'):'—','一次翻转平均绕环一周用 T/2；回到同一极性需两周。N = '+n+'，包含 NAND。逐级表分别测量各门的实际上升和下降延迟。'],
-      ['静态电源电流 IDDQ','IDDQ = ∫静态 IDD(t) dt / Δt静',fmt(m.iddq*1e6,2,'nA'),'取 EN 拉高前、已处于直流稳态的窗口。理想 MOS 截止时电流为零；可设置每级背景漏电，观察静态基线。'],
-      ['工作电源电流 IDDA','IDDA = ∫工作 IDD(t) dt / Δt',fmt(m.idda===null?null:m.idda*1000,2,'µA'),'对 EN 高电平内完整振荡周期的电源电流积分。IDD(t) 为所有接 VDD 的 PMOS 支路电流之和，加上背景漏电；EN 驱动器在测量边界之外。'],
-      ['环级有效开关电流 Ieff','Ieff,RO = IDDA − IDDQ',fmt(m.ieff===null?null:m.ieff*1000,2,'µA'),'本页采用整环扣除静态基线后的平均开关电流。单管驱动能力另有双偏置定义 Ieff,MOS = (IH + IL)/2，需由单管 I–V 特性提取。'],
-      ['有效电容 Ceff · 整环 / 平均每级','Ceff,RO = Ieff,RO / (VDD · f)；Ceff,级 = Ceff,RO / N',m.k?fmt(m.ceff,2,'fF')+' / '+fmt(m.ceff/n,2,'fF'):'—','每周期从电源取得的净电荷为 Ieff,RO × T，再除以电源电压得到等效电容。它包含翻转时的直通电流及内部节点充电贡献，可与设置的节点负载比较。']
+      ['周期 T / 频率 f','<img src="formulas/period.svg" width="48" height="25" alt="T = Δt / K"><img src="formulas/frequency.svg" width="36" height="25" alt="f = 1 / T">',m.k?fmt(m.period/1000,3,'ns')+' / '+fmt(1000/m.period,3,'GHz'):'—','从同一节点连续上升穿越 ½ VDD 的时刻计时。K 为完整周期数，Δt 为所选周期的总时长。'],
+      ['环路延迟 / 单级平均延迟','<img src="formulas/loop.svg" width="61" height="27" alt="平均环路延迟 = T / 2"><img src="formulas/stage.svg" width="74" height="27" alt="单级平均延迟 = T / (2N)">',m.k?fmt(m.period/2,2,'ps')+' / '+fmt(m.period/(2*n),2,'ps'):'—','一次翻转平均绕环一周用 T/2；回到同一极性需两周。N = '+n+'，包含 NAND。逐级表分别测量各门的实际上升和下降延迟。'],
+      ['静态电源电流 IDDQ','<img src="formulas/iddq.svg" width="173" height="32" alt="IDDQ 等于静态窗口 WQ 内电源电流的积分除以窗口时长 ΔtQ">',fmt(m.iddq*1e6,2,'nA'),'WQ 为 EN 拉高前的直流稳态窗口，ΔtQ 为其时长。理想 MOS 截止时电流为零；可设置每级背景漏电，观察静态基线。'],
+      ['工作电源电流 IDDA','<img src="formulas/idda.svg" width="165" height="29" alt="IDDA 等于工作窗口 WA 内电源电流的积分除以窗口总时长 Δt">',fmt(m.idda===null?null:m.idda*1000,2,'µA'),'WA 包含选中的完整振荡周期，Δt 为其总时长。IDD(t) 为所有接 VDD 的 PMOS 支路电流之和，加上背景漏电；EN 驱动器在测量边界之外。'],
+      ['环级有效开关电流 Ieff','<img src="formulas/ieff.svg" width="164" height="19" alt="Ieff,RO = IDDA − IDDQ">',fmt(m.ieff===null?null:m.ieff*1000,2,'µA'),'本页采用整环扣除静态基线后的平均开关电流。单管驱动能力另有双偏置定义，需由单管 I–V 特性提取。<img src="formulas/mos.svg" width="118" height="28" alt="Ieff,MOS = (IH + IL) / 2">'],
+      ['有效电容 Ceff · 整环 / 平均每级','<img src="formulas/ceff.svg" width="110" height="32" alt="整环 Ceff = Ieff,RO / (VDD × f)"><img src="formulas/cstage.svg" width="125" height="31" alt="平均每级 Ceff = 整环 Ceff / N">',m.k?fmt(m.ceff,2,'fF')+' / '+fmt(m.ceff/n,2,'fF'):'—','每周期从电源取得的净电荷为 Ieff,RO × T，再除以电源电压得到等效电容。它包含翻转时的直通电流及内部节点充电贡献，可与设置的节点负载比较。']
     ];
-    $('metrics').innerHTML=readings.map(([name,formula,value,note])=>'<div class="metric"><div><h3>'+name+'</h3><strong>'+value+'</strong></div><code>'+formula+'</code><p>'+note+'</p></div>').join('');
+    $('metrics').innerHTML=readings.map(([name,formula,value,note])=>'<div class="metric"><div><h3>'+name+'</h3><strong>'+value+'</strong></div><div class="equations">'+formula+'</div><p>'+note+'</p></div>').join('');
     const working=m.windows.map(([a,b])=>ns(a)+'–'+ns(b)).join('、');
     $('windows').textContent='静态窗口 '+ns(m.quietEnd/2)+'–'+ns(m.quietEnd)+' ns；工作窗口 '+(m.k?working+' ns（'+m.k+' 个完整周期）':'暂无完整周期')+'。';
     const r=result,w=720,h=75,max=Math.max(1e-8,r.idd.reduce((a,b)=>Math.max(a,b),0)),x=t=>t/r.end*w;

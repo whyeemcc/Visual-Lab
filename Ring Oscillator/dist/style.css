@@ -6,3 +6,5 @@
 
 .board{display:flex;flex-direction:column;align-items:stretch;justify-content:center;min-width:0;padding:34px 8px 25px}.board-readout{position:absolute;inset:12px 15px auto;display:flex;align-items:center;gap:10px;font:11px var(--mono);color:#b0c7af}.board-readout strong{color:#e5f7e5}.schematic-scroll{overflow-x:auto;scrollbar-width:thin;scrollbar-color:#678875 #18382e}.board svg{width:100%;height:auto;min-height:138px;max-height:205px}.overview{grid-template-columns:minmax(0,1fr) minmax(165px,.38fr)}
 @media(max-width:900px){.overview{grid-template-columns:minmax(0,1fr)}}
+
+.metric>.equations{display:flex;justify-content:flex-start;align-items:center;flex-wrap:wrap;gap:12px 20px;margin:14px 0}.metric img{display:block;max-width:100%;height:auto}.metric p img{margin-top:8px}
