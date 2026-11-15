@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 450 164" fill="none" role="img" aria-label="平衡 PN 结能带图">
+<defs><pattern id="fine" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0V20" stroke="#92cebc" opacity=".15"/></pattern><linearGradient id="edge"><stop stop-color="#ffad98"/><stop offset=".43" stop-color="#f5c1a2"/><stop offset=".68" stop-color="#a1ddc6"/><stop offset="1" stop-color="#86dfc4"/></linearGradient></defs>
+<rect width="450" height="164" fill="#163e39"/><rect width="450" height="164" fill="url(#fine)"/><path d="M160 0v164m121-164v164" stroke="#cde6d7" stroke-dasharray="2 6" opacity=".35"/>
+<path d="M20 27h131c32 0 46 5 69 25 22 20 36 25 65 25h123m-388 11h131c32 0 46 5 69 25 22 20 36 25 65 25h123" stroke="url(#edge)" stroke-width="3"/>
+<path d="M20 83h388" stroke="#d4e8bd" stroke-dasharray="5 5"/>
+<g fill="#d5eae0" font-family="monospace" font-size="12"><text x="417" y="75">Eс</text><text x="417" y="94">Ef</text><text x="417" y="142">Ev</text><text x="22" y="153">P</text><text x="391" y="153">N</text></g></svg>

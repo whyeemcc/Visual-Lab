@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#143c38"><title>PN 结二极管实验室 · Visual Lab</title>
+<link rel="stylesheet" href="style.css">
+<script defer src="physics.js"></script><script defer src="device.js"></script><script defer src="plots.js"></script><script defer src="lessons.js"></script><script defer src="app.js"></script>
+</head>
+<body>
+<header><div class="bar"><a id="home" href="../../index.html"><span class="logo" aria-hidden="true">∿</span> Visual Lab</a><span class="crumb">/　半导体器件</span><a class="home-link" href="../../index.html">项目目录 ↗</a></div></header>
+<main>
+<section class="intro"><div><div class="eyebrow">DEVICE PHYSICS　/　DIODE LAB</div><h1>PN 结二极管<span>实验室</span></h1><p>沿着同一个硅 PN 结，从载流子扩散走到反向恢复与击穿。</p></div>
+<img src="junction.svg" alt="零偏时电子能带从 P 侧向 N 侧弯曲，平衡费米能级保持水平"></section>
+<div class="layout">
+<aside><div class="aside-head"><strong>实验目录</strong><span>9 个实验</span></div><nav id="lessons" aria-label="实验目录"></nav><label class="mobile-nav">选择实验<select id="lessonSelect"></select></label></aside>
+<div class="bench">
+<section class="lesson-head"><div id="level" class="eyebrow"></div><h2 id="title"></h2><p id="question"></p></section>
+<section class="card" aria-labelledby="structure"><div class="card-head"><h3 id="structure">器件截面</h3><span class="status" id="state"></span></div><div id="device"></div><div class="readouts" id="readouts"></div></section>
+<section class="card controls"><div class="card-head"><h3>实验条件</h3><button id="reset" class="plain">恢复本实验预设 ↺</button></div><div id="switches"></div><div id="sliders"></div><p class="note" id="limit"></p></section>
+<section class="card measure" id="measure"><div class="card-head"><h3>测量台</h3><div id="views" role="group" aria-label="测量视图"><button data-view="space">空间剖面</button><button data-view="dc">直流特性</button><button data-view="time">脉冲响应</button></div></div><div id="plots"></div></section>
+<section class="theory"><div class="eyebrow">实验解读</div><h3 id="theoryTitle"></h3><div id="formula"></div><p id="theoryText"></p><details><summary>计算假设与适用范围</summary><p id="modelNote"></p><a class="source" href="https://www.chu.berkeley.edu/wp-content/uploads/2020/01/Chenming-Hu_ch4-1.pdf">器件物理参考 · 胡正明《Modern Semiconductor Devices》第 4 章 ↗</a></details></section>
+<div class="paging"><button id="previous">← 上一个实验</button><button id="next">下一个实验 →</button></div>
+</div></div>
+</main><footer>Visual Lab　/　PN 结二极管实验室</footer></body></html>
