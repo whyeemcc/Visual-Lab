@@ -1,0 +1,10 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#163c32"><title>标准单元库 · Visual Lab</title><link rel="icon" href="icon.svg"><link rel="stylesheet" href="style.css"></head><body>
+<header><div class="bar"><span class="brand"><img src="icon.svg" alt="">Visual Lab</span><span class="bread">/　Standard Cell Library</span><a href="#references">参考资料 ↗</a></div></header>
+<main><div class="intro"><div><div class="kicker">STANDARD CELL LIBRARY</div><h1>标准单元库</h1><p>按单元查看电路连接、FinFET 布局和使用场景。</p></div><span class="count" id="count"></span></div>
+<div class="bench"><aside><div class="search"><label for="query">查找单元</label><input id="query" type="search" placeholder="名称、引脚或用途"><label for="group" class="sr">类别</label><select id="group"></select></div><nav id="list" aria-label="标准单元列表"></nav></aside>
+<article id="detail"><div class="summary"><div class="kicker" id="family"></div><h2><span id="name"></span> <small id="cn"></small></h2><code id="expr"></code></div>
+<div class="explain"><section><h3>工作原理</h3><p id="principle"></p></section><section><h3>使用场景</h3><p id="use"></p></section></div>
+<section class="tester" id="tester"><div class="section-head"><h3>引脚实验</h3><span id="mode"></span></div><div class="signals" id="signals"></div><p id="state-msg"></p></section>
+<section class="drawing"><div class="section-head"><h3>单元结构</h3><div class="switch"><button id="sch" aria-pressed="true">原理图</button><button id="lay" aria-pressed="false">FinFET 版图</button></div></div><p id="diagram-note"></p><div id="layers"></div><div id="diagrams"></div></section></article></div>
+<footer id="references"><strong>版图参考</strong><p>图中的鳍、栅、接触与电源轨用于说明平面布局。器件端口用网名表示连接；尺寸、鳍数和局部布线为教学简化，未经过 DRC / LVS 签核。</p><a href="https://asap.asu.edu/" target="_blank" rel="noreferrer">ASU · ASAP7 预测工艺设计套件 ↗</a></footer></main>
+<script src="catalog.js"></script><script src="drawings.js"></script><script src="app.js"></script></body></html>
