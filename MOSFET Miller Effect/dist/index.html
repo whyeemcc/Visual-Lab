@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#183b36">
+<title>MOSFET 米勒效应 · Visual Lab</title>
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="scope.css">
+<script defer src="lab-model.js"></script><script defer src="switch.js"></script><script defer src="diagrams.js"></script><script defer src="scope.js"></script><script defer src="app.js"></script>
+</head><body>
+<header><div class="shell head"><a href="../../index.html" class="brand"><span aria-hidden="true">∿</span>Visual Lab</a><span class="crumb">/　器件与电路</span><a href="../../index.html" class="back">项目目录 ↗</a></div></header>
+<main class="shell">
+<section class="hero"><div><div class="eyebrow">DEVICE PHYSICS　/　MOSFET</div><h1>MOSFET <span>米勒效应</span></h1><p>改变漏极电压，追踪栅漏之间的电荷，再测量带宽与开关平台。</p></div><img src="cover.svg" alt="MOSFET 栅漏耦合与米勒平台波形"></section>
+<nav class="chapters" aria-label="选择实验"><button data-mode="charge"><span>基础原理</span><b>栅漏电荷</b></button><button data-mode="ac"><span>频域测试</span><b>共源放大器</b></button><button data-mode="switch"><span>时域测试</span><b>开关米勒平台</b></button></nav>
+<div class="section-top"><div><h2 id="title"></h2><p id="question"></p></div><button id="reset" class="reset">恢复本节预设 ↺</button></div>
+<div class="readouts" id="readouts"></div>
+<div class="bench">
+<div class="setup"><section class="card"><div class="bar"><h3>测试电路</h3><span id="circuitType"></span></div><div id="diagram"></div><p id="circuitNote" class="caption"></p></section>
+<section class="card"><div class="bar"><h3>实验条件</h3></div><div id="actions"></div><div id="controls" class="control-grid"></div><details class="advanced" id="advanced"><summary>更多器件参数</summary><div id="extra" class="control-grid"></div></details></section></div>
+<section class="card measurements"><div class="bar"><h3 id="scopeTitle"></h3></div><div id="views"></div><div id="scope"></div><p id="measurementNote" class="caption"></p></section>
+</div>
+<section class="interpret"><div class="equation-panel"><div class="eyebrow">物理关系</div><div id="formula"></div></div><div class="explain"><h3 id="finding"></h3><p id="explanation"></p></div></section>
+<details class="method"><summary>计算方法、测量定义与参考资料</summary><div id="methodBody"></div></details>
+<div class="pager"><button id="prev">← 上一个实验</button><button id="next">下一个实验 →</button></div>
+</main><footer class="shell">Visual Lab　/　MOSFET 米勒效应</footer>
+</body></html>

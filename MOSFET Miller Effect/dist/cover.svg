@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 228" role="img" aria-labelledby="name desc">
+<title id="name">栅漏电容与开通平台</title><desc id="desc">上方为栅漏电容连接，下方为栅压平台与漏压下降的示意波形</desc>
+<defs>
+ <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0v20" fill="none" stroke="#aed9bd" opacity=".13"/></pattern>
+ <linearGradient id="zone"><stop stop-color="#ecb56e" stop-opacity=".025"/><stop offset=".5" stop-color="#ecb56e" stop-opacity=".16"/><stop offset="1" stop-color="#ecb56e" stop-opacity=".025"/></linearGradient>
+</defs>
+<rect width="500" height="228" fill="#173a32"/><rect width="500" height="228" fill="url(#grid)"/>
+<rect x="198" y="86" width="104" height="107" fill="url(#zone)"/>
+<g stroke-linecap="round" stroke-linejoin="round" fill="none">
+ <path d="M198 86v109m104-109v109" stroke="#cca66b" opacity=".45" stroke-dasharray="2 5"/>
+ <path d="M71 194h363" stroke="#83a694" opacity=".45"/>
+ <path d="M82 183h38c28 0 41-34 60-40 7-3 13-4 18-4 38-2 68 1 99-3 19-2 28-13 42-27 16-16 35-18 68-18h13" stroke="#b8e5bd" stroke-width="3"/>
+ <path d="M82 101h105c13 0 21 4 29 13l58 55c9 9 18 12 30 12h116" stroke="#ecb56e" stroke-width="3"/>
+ <path d="M114 48h124m0-14v28m11-28v28m0-14h125" stroke="#cde3ca" stroke-width="2.5"/>
+ <path d="M113 51v26m261-26v26" stroke="#9abda5" stroke-dasharray="2 4"/>
+</g>
+<g font-family="ui-monospace,monospace" font-weight="600" font-size="14">
+ <circle cx="113" cy="48" r="5" fill="#b8e5bd"/><text x="94" y="51" fill="#b8e5bd">G</text>
+ <circle cx="374" cy="48" r="5" fill="#ecb56e"/><text x="386" y="51" fill="#ecb56e">D</text>
+ <text x="226" y="23" fill="#d6e7d7">Cgd</text>
+ <text x="430" y="95" fill="#b8e5bd">Vgs</text><text x="430" y="185" fill="#ecb56e">Vds</text>
+</g></svg>

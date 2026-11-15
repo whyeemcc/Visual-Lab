@@ -1,0 +1,26 @@
+.ms-scope{width:100%;min-width:0;color:#24453c;--ms-line:#d5dfd4;--ms-ink:#234b40;--ms-amber:#a85a22}
+.ms-legend{display:flex;flex-wrap:wrap;align-items:center;gap:5px 17px;margin:2px 0 9px;font-size:12px;line-height:1.5}
+.ms-legend span{display:inline-flex;align-items:center;gap:6px}
+.ms-legend i{display:inline-block;width:19px;border-top:2.5px solid}
+.ms-legend i.ms-band-key{width:13px;height:9px;border:1px solid #d5bb87;border-radius:2px;background:#f5e8ca}
+.ms-plot{position:relative;overflow:hidden;width:100%;min-width:0;border-radius:8px;border:1px solid var(--ms-line);background:#fafcf8;touch-action:pan-y;user-select:none;-webkit-user-select:none}
+.ms-plot svg{display:block;width:100%;height:auto;cursor:crosshair}
+.ms-plot.ms-panning svg{cursor:grabbing}
+.ms-plot .ms-grid{stroke:#d4dfd5;stroke-width:1;fill:none}.ms-plot .ms-vertical{stroke-dasharray:2 4}
+.ms-plot text{font-family:ui-monospace,"PingFang SC",monospace}.ms-axis-title{fill:#375e4e;font-size:12px;font-weight:600}
+.ms-tick{fill:#53695e;font-size:10px}.ms-cursors text{font-size:12px;font-weight:700}.ms-cursor-0 path{stroke:#17715b}.ms-cursor-0 text{fill:#17715b}.ms-cursor-1 path{stroke:#a45c28}.ms-cursor-1 text{fill:#99481e}
+.ms-tools{display:flex;align-items:center;flex-wrap:wrap;gap:8px 14px;margin-top:10px}
+.ms-scope .ms-tools label{display:inline-flex;gap:6px;align-items:center;font-size:12px;white-space:nowrap;color:#425f50}
+.ms-scope .ms-tools [hidden]{display:none}.ms-pick{display:inline-flex;gap:3px}
+.ms-scope button,.ms-scope select{min-height:32px;font:inherit;font-size:12px;line-height:1.5;letter-spacing:0;color:var(--ms-ink);border:1px solid #bdcec1;background:#fff;border-radius:6px;padding:4px 8px;cursor:pointer}
+.ms-pick button[data-cursor="0"][aria-pressed=true]{background:#e4efe6;border-color:#7ea48e}
+.ms-pick button[data-cursor="1"][aria-pressed=true]{background:#f7e9d8;border-color:#c69c72}
+.ms-tools input[type=range]{width:clamp(65px,10vw,119px);height:18px;margin:0;accent-color:#357859}
+.ms-scope :focus-visible{outline:2px solid #1b7359;outline-offset:2px}
+.ms-readout{margin-top:12px;border:1px solid var(--ms-line);border-radius:8px;overflow:hidden}
+.ms-readout table{width:100%;border-collapse:collapse;font:500 12px/1.5 ui-monospace,"PingFang SC",monospace}
+.ms-readout td,.ms-readout th{padding:5px 9px;text-align:right;white-space:nowrap}
+.ms-readout tr+tr{border-top:1px solid #e4eae2}.ms-readout th:first-child{text-align:left}
+.ms-readout thead{background:#edf3eb;color:#3b5746}.ms-readout thead th:nth-child(2){color:#17715b}
+.ms-readout thead th:nth-child(3){color:#9c4b1e}.ms-readout tbody th{font-weight:500}
+@media(max-width:600px){.ms-readout td,.ms-readout th{padding:4px 5px}.ms-readout table{font-size:11px}.ms-readout th:first-child{white-space:normal}.ms-tools{gap:7px}.ms-plot .ms-axis-title{font-size:11px}}

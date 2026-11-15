@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 220" role="img" aria-labelledby="ttl desc">
+<title id="ttl">NPN 双极型晶体管</title><desc id="desc">发射区、窄基区和集电区的轴测剖面及三端引线</desc>
+<defs>
+ <pattern id="g" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0v20" stroke="#a7ddc6" stroke-width=".55" opacity=".17" fill="none"/></pattern>
+ <pattern id="speck" width="9" height="9" patternUnits="userSpaceOnUse"><circle cx="3" cy="4" r=".85" fill="#e9fff0" opacity=".34"/></pattern>
+</defs>
+<path fill="#143a34" d="M0 0h500v220H0z"/><path fill="url(#g)" d="M0 0h500v220H0z"/>
+<g fill="none" stroke="#96c9af" stroke-width=".9" opacity=".6"><path d="m70 152 279 30 91-49M86 157v4m252 24v4m96-54v4"/><path d="m71 141 0 17m277 14v15m94-69v20" stroke-dasharray="2 4"/></g>
+<g stroke="#173e38" stroke-linejoin="round" stroke-width="1.4">
+ <path fill="#73c3a8" d="m68 99 86-47 108 12-86 47z"/><path fill="#46987e" d="m68 99 108 12v37l-108-12z"/>
+ <path fill="#f6be94" d="m176 111 86-47 42 4-86 47z"/><path fill="#ce8d6c" d="m176 111 42 4v37l-42-4z"/>
+ <path fill="#91d7c1" d="m218 115 86-47 132 15-86 47z"/><path fill="#63b197" d="m218 115 132 15v37l-132-15z"/><path fill="#377f69" d="m350 130 86-47v37l-86 47z"/>
+</g>
+<path d="m68 99 86-47 282 31-86 47z" fill="url(#speck)"/>
+<g stroke="#244e41" stroke-width="1.3" stroke-linejoin="round" fill="#e5e6c6">
+ <path d="m102 90 43-23 48 5-43 23z"/><path d="m201 102 43-23 20 2-43 23z"/><path d="m279 110 43-23 65 7-43 23z"/>
+</g>
+<g fill="none" stroke="#e3efd2" stroke-linecap="round" stroke-width="2.25">
+ <path d="M148 80V52L117 32H85"/><path d="M231 90V45l21-18"/><path d="M332 99V72l36-22h41"/>
+</g>
+<g fill="#e4eed1" font-family="ui-monospace,monospace" font-size="14" font-weight="600"><text x="68" y="36">E</text><text x="257" y="28">B</text><text x="415" y="54">C</text></g>
+<g fill="#163d32" font-family="ui-monospace,monospace" font-size="14" font-weight="700"><text transform="translate(114 126) skewY(6)">n+</text><text transform="translate(194 138) skewY(6)">p</text><text transform="translate(278 145) skewY(6)">n</text></g>
+</svg>

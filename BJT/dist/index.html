@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#183831">
+<title>BJT 实验室 · Visual Lab</title>
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="plots.css">
+<script src="physics.js" defer></script><script src="device.js" defer></script><script src="plots.js" defer></script><script src="lessons.js" defer></script><script src="app.js" defer></script>
+</head>
+<body>
+<header><div class="top shell"><a id="brand" href="../../index.html"><span class="brandmark" aria-hidden="true">∿</span>Visual Lab</a><span class="crumb">/　半导体器件</span><a class="home" href="../../index.html">项目目录 ↗</a></div></header>
+<main class="shell">
+<section class="hero"><div class="hero-copy"><span class="eyebrow">DEVICE PHYSICS　/　BIPOLAR TRANSISTOR</span><h1>BJT <span>实验室</span></h1><p>跟踪载流子穿过基区，测量放大、饱和与开关速度。</p></div><img src="cover.svg" alt="双极型晶体管的发射区、基区与集电区"></section>
+<div class="layout">
+<aside><div class="navtop"><b>实验目录</b><span>9 个实验</span></div><nav id="nav" aria-label="实验目录"></nav><label class="mobile">选择实验<select id="mobileNav"></select></label></aside>
+<div class="workspace">
+<div class="heading"><div><div class="eyebrow" id="stage"></div><h2 id="title"></h2></div><div class="polarity" role="group" aria-label="器件极性"><button data-type="NPN">NPN</button><button data-type="PNP">PNP</button></div></div>
+<p class="question" id="question"></p>
+<div class="bench-grid"><div class="bench-setup"><div class="card"><div class="bar"><h3 id="deviceTitle">器件截面</h3><span class="state" id="state"></span></div><div id="device"></div><div id="metrics"></div></div>
+<section class="card controls"><div class="bar"><h3>实验条件</h3><button id="reset">恢复本节预设 ↺</button></div><div id="modes"></div><div id="inputs"></div><details id="materialDetails"><summary>器件参数 · 跨实验共用</summary><div id="materialInputs"></div></details><p id="warning" role="status"></p></section>
+</div><section class="card bench-chart"><div class="bar"><h3 id="measurement">测量台</h3></div><div id="plots"></div></section></div>
+<section class="lesson-note"><div class="eyebrow">实验解读</div><h3 id="concept"></h3><div id="equation"></div><p id="interpret"></p><details><summary>模型与适用范围</summary><p id="limits"></p><a id="reading" target="_blank" rel="noreferrer">课程参考 · MIT OpenCourseWare ↗</a></details></section>
+<div class="stepper"><button id="prev">← 上一个实验</button><button id="next">下一个实验 →</button></div>
+</div></div></main>
+<footer class="shell">Visual Lab　/　双极型晶体管实验室</footer></body></html>
