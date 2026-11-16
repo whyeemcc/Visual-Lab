@@ -51,6 +51,13 @@
     ti:'<a href="https://www.ti.com/lit/ml/slua618a/slua618a.pdf" target="_blank" rel="noreferrer">Texas Instruments · MOSFET 栅极驱动与栅极电荷 ↗</a>'
   };
   const scope=MillerScope.mount($('scope'));
+  const player=MillerChargePlayer.mount($('chargePlayer'),$('diagram'),scope);
+  function renderMeasurement(chart,animation){
+    let ready=false;
+    scope.render({...chart,onCursor:({a})=>{if(ready)player.follow(a);}});
+    player.load(animation);
+    ready=true;
+  }
   let mode='charge',switchView='time',approx=true,compare=true,pending=false;
   const sig=(x,n=4)=>Number.isFinite(x)?Number(x.toPrecision(n)).toString():'—';
   const hz=x=>x>=1e9?sig(x/1e9)+' GHz':x>=1e6?sig(x/1e6)+' MHz':x>=1e3?sig(x/1e3)+' kHz':sig(x)+' Hz';
@@ -62,10 +69,13 @@
   function renderCharge(p){
     const r=P.ramp(p);
     numbers([['漏 / 栅电压增益 Av',sig(p.gain)+' V/V'],['等效输入电容',sig(r.cin)+' pF'],['栅极总电荷变化',sig(r.deltaQ)+' pC'],['斜坡期间的栅电流',sig(r.ig)+' mA']]);
-    scope.render({id:'charge',points:r.points,xLabel:'时间',xUnit:'ns',cursors:[0,p.tr],rows:[
+    renderMeasurement({id:'charge',points:r.points,xLabel:'时间',xUnit:'ns',cursors:[0,p.tr],rows:[
       row('节点电压变化','V',series('vg','ΔVG','green'),series('vd','ΔVD','amber')),
       row('栅侧电荷变化','pC',series('qg','总电荷','green'),series('qgd','栅漏支路','amber',true),series('qgs','栅源支路','blue',true))
-    ]});
+    ]},{mode:'charge',rise:p.tr,samples:r.points.map(pt=>{
+      const inRamp=pt.x>=0 && pt.x<p.tr;
+      return {...pt,t:pt.x,igs:inRamp?p.cgs*p.stepV/p.tr:0,igd:inRamp?r.igd:0};
+    })});
     $('measurementNote').textContent='默认游标位于斜坡两端。用总电荷的 B−A 读数除以栅压的 B−A 读数，可复核上方的等效输入电容。';
   }
   function renderAc(p){
@@ -74,10 +84,10 @@
     const lines=[series('gain','完整电路','green')];
     if(approx)lines.push(series('approx','输入单极点','amber',true));
     if(compare)lines.push(series('noFeedback','断开 Cgd','blue',true));
-    scope.render({id:'ac',points:r.points,xLabel:'频率',xUnit:'Hz',xScale:'log',cursors:[r.bw,r.fm],rows:[
+    renderMeasurement({id:'ac',points:r.points,xLabel:'频率',xUnit:'Hz',xScale:'log',cursors:[r.bw,r.fm],rows:[
       row('源到漏极的幅值增益','dB',...lines),
       row('栅端等效输入电容','pF',series('cin','由栅端导纳提取','green'),series('staticCap','低频值','amber',true))
-    ]});
+    ]},{mode:'ac',cycle:r.cycle});
     $('measurementNote').textContent='耦合支路断开时，完整电路带宽为 '+hz(r.noFeedbackBW)+'。输入单极点估算只计入 Rs 与低频等效输入电容，输出极点和前馈零点会造成偏差。';
   }
   function renderSwitch(p){
@@ -102,7 +112,10 @@
       row('栅极电流','A',series('ig','总栅极电流','green'),series('igd','流入 Cgd 栅侧','amber',true)),
       row('换流过程','A',series('id','沟道电流','blue'),series('diode','续流二极管','purple'))
     ];
-    scope.render({id:'switch-'+switchView+'-'+p.edge,points,xLabel:xCharge?'从边沿开始的栅极电荷变化幅值':'时间',xUnit:xCharge?'nC':'ns',band,cursors:band?[band.from,band.to]:undefined,rows});
+    renderMeasurement({id:'switch-'+switchView+'-'+p.edge,points,xLabel:xCharge?'从边沿开始的栅极电荷变化幅值':'时间',xUnit:xCharge?'nC':'ns',band,cursors:band?[band.from,band.to]:undefined,rows},{
+      mode:'switch',on:p.edge==='on',cgs:p.cgs,disconnected:p.capMode==='off',bandStart:r.start,bandEnd:r.end,
+      samples:points.map(pt=>({...pt,igs:pt.ig-pt.igd,qgs:p.cgs*pt.vg/1000,qgd:pt.qbranch}))
+    });
     $('measurementNote').textContent=(p.capMode==='off'?'Cgd 断开时，漏端仍需对 Cds 充放电。':'阴影标出实际漏压摆幅的中央 80%。')+' 窗口内沟道耗散能量 ∫VDS·Ich dt = '+sig(r.energy)+' µJ。|ΔQgd| 只计栅漏支路，横轴 |ΔQg|（栅极电荷视图）还包含栅源电荷。';
   }
   function plot(){

@@ -293,7 +293,16 @@ window.MillerScope = (() => {
         (cfg.band && cfg.band.label ? '<span><i class="ms-band-key"></i>' + escape(cfg.band.label) + '</span>' : '');
       paint(true);
     }
-    return {render, resetCursors, destroy(){observer?.disconnect(); root.remove();}};
+    function moveA(x) {
+      positions[0] = clamp(x, fromAxis(domain[0]), fromAxis(domain[1]));
+      const axis=toAxis(positions[0]);
+      if(zoom>1 && (axis<windowX[0] || axis>windowX[1])){
+        const span=windowX[1]-windowX[0];
+        offset=clamp((axis-span/2-domain[0])/(domain[1]-domain[0]-span),0,1);
+        paint(false);
+      }else refreshCursors(false);
+    }
+    return {render, resetCursors, moveA, get cursorA(){return positions[0];}, destroy(){observer?.disconnect(); root.remove();}};
   }
   return {mount};
 })();

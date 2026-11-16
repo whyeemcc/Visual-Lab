@@ -17,9 +17,13 @@
     const gs=p.cgs*1e-12,ds=p.cds*1e-12,gd=p.cgd*1e-12;
     const gain=-gm/g;
     const cin=gs+gd*(1-gain),fm=1/(2*Math.PI*rs*cin);
-    function response(f,c){
+    function denominator(f,c){
       const w=2*Math.PI*f,co=ds+c,ci=gs+c;
       const re=g-w*w*rs*(ci*co-c*c),im=w*(co+rs*(g*ci+gm*c));
+      return {w,co,re,im};
+    }
+    function response(f,c){
+      const {w,co,re,im}=denominator(f,c);
       const mag=Math.hypot(gm,w*c)/Math.hypot(re,im);
       const realDG=(-gm*g+w*w*c*co)/(g*g+(w*co)**2);
       return {mag,cin:(gs+c*(1-realDG))*1e12};
@@ -39,7 +43,24 @@
       points.push({x,gain:20*Math.log10(h.mag),noFeedback:20*Math.log10(response(x,0).mag),
         approx:20*Math.log10(-gain/Math.hypot(1,x/fm)),cin:h.cin,staticCap:cin*1e12});
     }
-    return {gain,cin:cin*1e12,bw,fm,noFeedbackBW,points};
+    // Phasors for a 10 mV peak test source, using the same nodal solution
+    // as the frequency sweep. Values are increments about the bias point.
+    function cycle(f){
+      const {w,co,re,im}=denominator(f,gd),scale=.01/(re*re+im*im);
+      function phasor(a,b){return {r:scale*(a*re+b*im),i:scale*(b*re-a*im)};}
+      const gate=phasor(g,w*co),drain=phasor(-gm,w*gd);
+      const wave=[];
+      for(let i=0;i<=160;i++){
+        const angle=2*Math.PI*i/160,cs=Math.cos(angle),sn=Math.sin(angle);
+        const vg=gate.r*cs-gate.i*sn,vd=drain.r*cs-drain.i*sn;
+        const slope=v=>-w*(v.r*sn+v.i*cs);
+        const igs=p.cgs*slope(gate)*1e-6,igd=p.cgd*(slope(gate)-slope(drain))*1e-6;
+        const t=1e9*i/(160*f);
+        wave.push({t,x:t,vg,vd,igs,igd,qgs:p.cgs*vg,qgd:p.cgd*(vg-vd)});
+      }
+      return wave;
+    }
+    return {gain,cin:cin*1e12,bw,fm,noFeedbackBW,points,cycle};
   }
   const api={ramp,ac,chargeDefaults,acDefaults};
   if(root)root.MillerModel=api;

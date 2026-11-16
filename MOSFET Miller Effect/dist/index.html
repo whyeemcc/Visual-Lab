@@ -4,7 +4,7 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#183b36">
 <title>MOSFET 米勒效应 · Visual Lab</title>
 <link rel="stylesheet" href="style.css"><link rel="stylesheet" href="scope.css">
-<script defer src="lab-model.js"></script><script defer src="switch.js"></script><script defer src="diagrams.js"></script><script defer src="scope.js"></script><script defer src="app.js"></script>
+<script defer src="lab-model.js"></script><script defer src="switch.js"></script><script defer src="diagrams.js"></script><script defer src="scope.js"></script><script defer src="charge-player.js"></script><script defer src="app.js"></script>
 </head><body>
 <header><div class="shell head"><a href="../../index.html" class="brand"><span aria-hidden="true">∿</span>Visual Lab</a><span class="crumb">/　器件与电路</span><a href="../../index.html" class="back">项目目录 ↗</a></div></header>
 <main class="shell">
@@ -13,7 +13,15 @@
 <div class="section-top"><div><h2 id="title"></h2><p id="question"></p></div><button id="reset" class="reset">恢复本节预设 ↺</button></div>
 <div class="readouts" id="readouts"></div>
 <div class="bench">
-<div class="setup"><section class="card"><div class="bar"><h3>测试电路</h3><span id="circuitType"></span></div><div id="diagram"></div><p id="circuitNote" class="caption"></p></section>
+<div class="setup"><section class="card"><div class="bar"><h3>测试电路</h3><span id="circuitType"></span></div><div id="diagram"></div>
+<div class="charge-player" id="chargePlayer">
+  <div class="play-heading"><h4>电荷慢放</h4><span data-phase></span></div>
+  <div class="play-tools"><button type="button" data-play>播放</button><button type="button" data-restart>从头重播</button><button type="button" data-jump hidden>定位转换中点</button><label>速度 <select data-speed><option value="0.25">¼×</option><option value="0.5">½×</option><option value="1" selected>1×</option><option value="2">2×</option></select></label></div>
+  <label class="play-timeline">时刻 <input data-time type="range" min="0" max="10000" step="1" aria-label="电荷动画时刻"><output data-time-value></output></label>
+  <dl class="play-readings"><div><dt data-vg-label>Vgs</dt><dd data-vg></dd></div><div><dt data-vd-label>Vds</dt><dd data-vd></dd></div><div><dt>流入 Cgs</dt><dd data-igs></dd></div><div><dt>流入 Cgd</dt><dd data-igd></dd></div><div><dt>Cgs 栅侧电荷</dt><dd data-qgs></dd></div><div><dt>Cgd 栅侧电荷</dt><dd data-qgd></dd></div></dl>
+  <p class="charge-key"><span class="key-plus">●</span> 正电荷　<span class="key-minus">●</span> 负电荷　<span data-scale></span>。导线绿点沿常规电流方向移动，极板紫点减少表示负电荷被抵消。</p>
+  <p data-guide></p>
+</div><p id="circuitNote" class="caption"></p></section>
 <section class="card"><div class="bar"><h3>实验条件</h3></div><div id="actions"></div><div id="controls" class="control-grid"></div><details class="advanced" id="advanced"><summary>更多器件参数</summary><div id="extra" class="control-grid"></div></details></section></div>
 <section class="card measurements"><div class="bar"><h3 id="scopeTitle"></h3></div><div id="views"></div><div id="scope"></div><p id="measurementNote" class="caption"></p></section>
 </div>
